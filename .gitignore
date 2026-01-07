@@ -1,0 +1,61 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+MovieDatabase
+MovieDatabase.exe
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+*.vcxproj
+*.vcxproj.filters
+*.sln
+
+# Code::Blocks files
+*.layout
+*.depend
+*.cbp
+
+# Dev-C++ files
+*.dev
+
+# CMake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Temporary files
+*.tmp
+*.temp
+*~
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE-specific files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Build directories
+build/
+bin/
+obj/
+Debug/
+Release/
+x64/
+x86/
+
+# Package manager files
+*.zip
+*.tar.gz
+*.rar
