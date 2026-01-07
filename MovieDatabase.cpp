@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <string>
 #include <algorithm>
+#include <fstream>
 
 // Initialize empty database
 MovieDatabase::MovieDatabase() : movieCount(0) {}
@@ -222,7 +223,7 @@ void MovieDatabase::displayLatestMovies() const {
     std::cout << std::string(100, '=') << std::endl;
 }
 
-// Search for movies by name (partial match)
+// Search for movies by name (partial match, case-insensitive)
 void MovieDatabase::searchMovieByName(const std::string& searchTerm) const {
     std::cout << "\n" << std::string(100, '=') << std::endl;
     std::cout << "                           SEARCH RESULTS FOR: \"" << searchTerm << "\"" << std::endl;
@@ -251,6 +252,11 @@ void MovieDatabase::searchMovieByName(const std::string& searchTerm) const {
     
     if (count == 0) {
         std::cout << "No movies found matching \"" << searchTerm << "\"" << std::endl;
+        std::cout << "\nSearch Tips:" << std::endl;
+        std::cout << "  • Search is case-insensitive ('inception', 'INCEPTION', 'Inception' all work)" << std::endl;
+        std::cout << "  • Partial names work (search 'lord' finds 'Lord of the Rings')" << std::endl;
+        std::cout << "  • Try different keywords or spellings" << std::endl;
+        std::cout << "\nExamples: 'godfather', 'dark knight', 'spirited', 'parasite'" << std::endl;
     }
     
     std::cout << std::string(100, '-') << std::endl;
@@ -344,4 +350,101 @@ void MovieDatabase::initializeSampleData() {
     addMovie(Movie("Elite Squad (Tropa de Elite)", 48, 2007, "Portuguese", 8.0));
     addMovie(Movie("Central Station (Central do Brasil)", 49, 1998, "Portuguese", 8.0));
     addMovie(Movie("The Second Mother (Que Horas Ela Volta?)", 50, 2015, "Portuguese", 7.7));
+}
+
+// Save database to file
+bool MovieDatabase::saveToFile(const std::string& filename) const {
+    std::ofstream file(filename, std::ios::binary);
+    if (!file.is_open()) {
+        std::cerr << "Error: Could not open file for writing: " << filename << std::endl;
+        return false;
+    }
+    
+    // Write movie count
+    file.write(reinterpret_cast<const char*>(&movieCount), sizeof(movieCount));
+    
+    // Write each movie
+    for (int i = 0; i < movieCount; i++) {
+        // Write movie ID
+        int id = movies[i].getId();
+        file.write(reinterpret_cast<const char*>(&id), sizeof(id));
+        
+        // Write movie name (length + string)
+        std::string name = movies[i].getName();
+        size_t nameLen = name.length();
+        file.write(reinterpret_cast<const char*>(&nameLen), sizeof(nameLen));
+        file.write(name.c_str(), nameLen);
+        
+        // Write year
+        int year = movies[i].getYear();
+        file.write(reinterpret_cast<const char*>(&year), sizeof(year));
+        
+        // Write language (length + string)
+        std::string language = movies[i].getLanguage();
+        size_t langLen = language.length();
+        file.write(reinterpret_cast<const char*>(&langLen), sizeof(langLen));
+        file.write(language.c_str(), langLen);
+        
+        // Write rating
+        double rating = movies[i].getRating();
+        file.write(reinterpret_cast<const char*>(&rating), sizeof(rating));
+    }
+    
+    file.close();
+    return true;
+}
+
+// Load database from file
+bool MovieDatabase::loadFromFile(const std::string& filename) {
+    std::ifstream file(filename, std::ios::binary);
+    if (!file.is_open()) {
+        // File doesn't exist yet - not an error, just use default data
+        return false;
+    }
+    
+    // Read movie count
+    int count;
+    file.read(reinterpret_cast<char*>(&count), sizeof(count));
+    
+    if (count < 0 || count > MAX_MOVIES) {
+        std::cerr << "Error: Invalid movie count in file" << std::endl;
+        file.close();
+        return false;
+    }
+    
+    // Clear current database
+    movieCount = 0;
+    
+    // Read each movie
+    for (int i = 0; i < count; i++) {
+        int id, year;
+        double rating;
+        std::string name, language;
+        size_t nameLen, langLen;
+        
+        // Read movie ID
+        file.read(reinterpret_cast<char*>(&id), sizeof(id));
+        
+        // Read movie name
+        file.read(reinterpret_cast<char*>(&nameLen), sizeof(nameLen));
+        name.resize(nameLen);
+        file.read(&name[0], nameLen);
+        
+        // Read year
+        file.read(reinterpret_cast<char*>(&year), sizeof(year));
+        
+        // Read language
+        file.read(reinterpret_cast<char*>(&langLen), sizeof(langLen));
+        language.resize(langLen);
+        file.read(&language[0], langLen);
+        
+        // Read rating
+        file.read(reinterpret_cast<char*>(&rating), sizeof(rating));
+        
+        // Add movie to database
+        addMovie(Movie(name, id, year, language, rating));
+    }
+    
+    file.close();
+    return true;
 }

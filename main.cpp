@@ -124,6 +124,13 @@ void addNewMovie(MovieDatabase& database) {
         }
         cout << endl;
         cout << string(60, '=') << endl;
+        
+        // Save changes to file
+        if (database.saveToFile("movies.dat")) {
+            cout << "\n? Changes saved successfully!" << endl;
+        } else {
+            cout << "\n? Warning: Could not save changes to file!" << endl;
+        }
     } else {
         cout << "\n? Failed to add movie." << endl;
     }
@@ -144,6 +151,13 @@ void removeMovie(MovieDatabase& database) {
         cout << "  SUCCESS! Movie removed from database" << endl;
         cout << "  Movie ID: " << id << endl;
         cout << string(60, '=') << endl;
+        
+        // Save changes to file
+        if (database.saveToFile("movies.dat")) {
+            cout << "\n? Changes saved successfully!" << endl;
+        } else {
+            cout << "\n? Warning: Could not save changes to file!" << endl;
+        }
     } else {
         cout << "\n? Movie not found with ID: " << id << endl;
     }
@@ -205,6 +219,13 @@ void updateMovie(MovieDatabase& database) {
         cout << "\n" << string(60, '=') << endl;
         cout << "  SUCCESS! Movie updated" << endl;
         cout << string(60, '=') << endl;
+        
+        // Save changes to file
+        if (database.saveToFile("movies.dat")) {
+            cout << "\n? Changes saved successfully!" << endl;
+        } else {
+            cout << "\n? Warning: Could not save changes to file!" << endl;
+        }
     } else {
         cout << "\n? Failed to update movie." << endl;
     }
@@ -219,8 +240,14 @@ void searchMovies(MovieDatabase& database) {
     string searchTerm;
     clearInput();
     
-    cout << "\nEnter movie name to search: ";
+    cout << "\nEnter movie name to search (case-insensitive): ";
     getline(cin, searchTerm);
+    
+    // Handle empty input
+    if (searchTerm.empty()) {
+        cout << "\n? No search term entered!" << endl;
+        return;
+    }
     
     database.searchMovieByName(searchTerm);
 }
@@ -282,8 +309,16 @@ int main() {
     // Create a database to store movies
     MovieDatabase database;
     
-    // Load the 20 sample movies
-    database.initializeSampleData();
+    // Try to load existing data from file
+    if (!database.loadFromFile("movies.dat")) {
+        // If file doesn't exist, load the 50 sample movies
+        database.initializeSampleData();
+        // Save initial data
+        database.saveToFile("movies.dat");
+        std::cout << "\nInitialized database with 50 sample movies." << std::endl;
+    } else {
+        std::cout << "\nLoaded existing database from file." << std::endl;
+    }
     
     // Program header
     cout << "\n";

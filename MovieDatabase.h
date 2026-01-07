@@ -54,6 +54,10 @@ public:
     // Check if database is full
     bool isFull() const;
     
+    // File persistence methods
+    bool saveToFile(const std::string& filename = "movies.dat") const;
+    bool loadFromFile(const std::string& filename = "movies.dat");
+    
     // Load the 20 sample movies into database
     void initializeSampleData();
 };
