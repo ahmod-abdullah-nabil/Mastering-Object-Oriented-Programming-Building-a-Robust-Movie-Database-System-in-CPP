@@ -106,7 +106,7 @@ Mastering-OOP-Movie-Database-CPP/
 4. **Plus Signs** - `[+++++++++ ] 9.3/10`
 5. **Numbers Only** - `[9.3/10.0]`
 
-## ?? Movie Database
+## 🎞️ Movie Database
 
 The system includes **50 critically acclaimed films** from around the world:
 
@@ -125,12 +125,12 @@ The system includes **50 critically acclaimed films** from around the world:
 **Capacity**: Can store up to **100,000 movies**
 
 ### Database Statistics
-- ?? **Current**: 50 sample movies
-- ?? **Capacity**: 100,000 movies
-- ?? **File Size**: ~3 KB for 50 movies, scales to ~6 MB for 100K
-- ?? **Languages**: 7 different languages represented
+- 🎬 **Current**: 50 sample movies
+- 📦 **Capacity**: 100,000 movies
+- 💾 **File Size**: ~3 KB for 50 movies, scales to ~6 MB for 100K
+- 🌍 **Languages**: 7 different languages represented
 
-## ??? System Architecture
+## 🏛️ System Architecture
 
 ### Classes
 
@@ -157,7 +157,7 @@ Manages collection of movies with dynamic memory allocation:
 - **Memory Usage**: ~40-50 MB for full capacity
 - **No Memory Leaks**: Proper `delete[]` in destructor
 
-## ?? Technologies & Concepts
+## 🔧 Technologies & Concepts
 
 ### C++ Features Used
 - **OOP**: Classes, objects, encapsulation, abstraction
@@ -178,14 +178,14 @@ Manages collection of movies with dynamic memory allocation:
 6. **Static Members** - Shared state across instances (display style)
 
 ### Advanced Concepts
-- ?? **Dynamic Memory Allocation** - Heap vs stack management
-- ?? **File Persistence** - Binary serialization/deserialization
-- ?? **Linear Search Algorithms** - Finding, filtering, sorting
-- ?? **Scalable Architecture** - 100K capacity with efficient memory use
-- ??? **Error Handling** - Input validation, file corruption detection
-- ?? **Static Variables** - Global style settings
+- 🧠 **Dynamic Memory Allocation** - Heap vs stack management
+- 💾 **File Persistence** - Binary serialization/deserialization
+- 🔍 **Linear Search Algorithms** - Finding, filtering, sorting
+- 📈 **Scalable Architecture** - 100K capacity with efficient memory use
+- 🛡️ **Error Handling** - Input validation, file corruption detection
+- 🎯 **Static Variables** - Global style settings
 
-## ?? Sample Output
+## 📊 Sample Output
 
 ```
 ====================================================================================================
@@ -227,22 +227,22 @@ Total movies: 50 | Capacity: 100000 | Available: 99950
 ====================================================================================================
 ```
 
-## ?? Learning Outcomes
+## 🎓 Learning Outcomes
 
 After completing this project, you will understand:
 
-- ? **Class Design** - Creating well-structured, reusable classes
-- ? **Encapsulation** - Protecting data with private members
-- ? **Memory Management** - Dynamic allocation and RAII pattern
-- ? **File I/O** - Binary serialization for data persistence
-- ? **Static Members** - Shared state across class instances
-- ? **Search Algorithms** - Linear search and filtering
-- ? **User Interface** - Menu-driven console applications
-- ? **Error Handling** - Input validation and edge cases
-- ? **Code Organization** - Professional project structure
-- ? **Documentation** - Writing clear, maintainable code
+- 📐 **Class Design** - Creating well-structured, reusable classes
+- 🔒 **Encapsulation** - Protecting data with private members
+- 🧠 **Memory Management** - Dynamic allocation and RAII pattern
+- 💾 **File I/O** - Binary serialization for data persistence
+- 🔗 **Static Members** - Shared state across class instances
+- 🔎 **Search Algorithms** - Linear search and filtering
+- 🎨 **User Interface** - Menu-driven console applications
+- ⚠️ **Error Handling** - Input validation and edge cases
+- 📦 **Code Organization** - Professional project structure
+- 📝 **Documentation** - Writing clear, maintainable code
 
-## ?? Build Requirements
+## 🛠️ Build Requirements
 
 - **Compiler**: 
   - g++ 4.8.1+ (with C++11 support)
@@ -256,7 +256,7 @@ After completing this project, you will understand:
   - Ubuntu 20.04+, Debian 10+
   - macOS 10.15+
 
-## ?? Usage Guide
+## 📖 Usage Guide
 
 ### Menu Options
 
@@ -292,7 +292,7 @@ Search Results:
 - The Dark Knight (2008) - English - 9.0/10
 ```
 
-## ?? Performance
+## ⚡ Performance
 
 - **Add Movie**: O(1) - Instant
 - **Remove Movie**: O(n) - Fast even with thousands
@@ -305,7 +305,7 @@ Search Results:
 - 10,000 movies: Search ~5-10ms
 - 100,000 movies: Search ~50-100ms
 
-## ?? Contributing
+## 🤝 Contributing
 
 This is an educational project. If you're using it for learning:
 
@@ -328,7 +328,7 @@ This is an educational project. If you're using it for learning:
 - Add user ratings and reviews
 - Implement SQLite database backend
 
-## ?? Documentation
+## 📚 Documentation
 
 The code is extensively documented with:
 - Clear function comments
@@ -338,7 +338,7 @@ The code is extensively documented with:
 
 For questions or clarifications, open an issue on GitHub!
 
-## ?? Known Limitations
+## ⚠️ Known Limitations
 
 - **Fixed Capacity**: 100,000 movies maximum (can be increased if needed)
 - **No Database Indexing**: Linear search only (fast enough for 100K)
@@ -346,36 +346,36 @@ For questions or clarifications, open an issue on GitHub!
 - **Single User**: No concurrent access support
 - **Console Only**: No graphical interface
 
-## ?? License
+## 📋 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## ????? Author
+## 👤 Author
 
 **Academic Project**  
 Created to demonstrate C++ OOP principles and best practices
 
-## ?? Acknowledgments
+## 🙏 Acknowledgments
 
 - Movies selected based on critical acclaim and cultural significance
 - IMDb for rating reference
 - Inspired by real-world database management systems
 - Built with educational clarity as the primary goal
 
-## ?? Contact & Support
+## 📞 Contact & Support
 
 - **Issues**: Open an issue on GitHub
 - **Questions**: Check existing issues or create a new one
 - **Contributions**: Pull requests welcome!
 
-## ?? Project Status
+## 🎯 Project Status
 
-? **Complete** - All core features implemented  
-? **Tested** - Works on Windows, Linux, macOS  
-? **Documented** - Comprehensive README and code comments  
-? **Maintained** - Active development and bug fixes
+✅ **Complete** - All core features implemented  
+✅ **Tested** - Works on Windows, Linux, macOS  
+✅ **Documented** - Comprehensive README and code comments  
+✅ **Maintained** - Active development and bug fixes
 
-## ?? Version History
+## 📅 Version History
 
 - **v2.0** (Current)
   - Increased capacity to 100,000 movies
@@ -393,6 +393,6 @@ Created to demonstrate C++ OOP principles and best practices
 
 ---
 
-**? If you find this project helpful, please consider giving it a star!**
+**⭐ If you find this project helpful, please consider giving it a star!**
 
-**Made with ?? for learning C++ and Object-Oriented Programming**
+**Made with ❤️ for learning C++ and Object-Oriented Programming**
