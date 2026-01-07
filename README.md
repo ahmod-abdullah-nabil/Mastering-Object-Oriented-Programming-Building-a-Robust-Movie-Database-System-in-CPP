@@ -6,24 +6,24 @@
 [![Capacity](https://img.shields.io/badge/Capacity-100K%20Movies-brightgreen.svg)]()
 [![Platform](https://img.shields.io/badge/Platform-Cross--Platform-orange.svg)]()
 
-## ?? Project Overview
+## 📚 Project Overview
 
 A professional-grade movie database management system demonstrating advanced Object-Oriented Programming (OOP) concepts in C++. This system showcases proper software engineering practices with a scalable architecture supporting up to **100,000 movies**.
 
-### ? Key Features
+### ✨ Key Features
 
-- ?? **Professional OOP Implementation** - Classes, objects, encapsulation, abstraction, RAII
-- ?? **50 Diverse Movies** - From 7 languages spanning 1948-2024
-- ?? **Advanced Search & Filter** - Top-rated, by language, latest releases, name search
-- ?? **File Persistence** - Automatic save/load with binary file format
-- ?? **5 Display Styles** - Stars, blocks, circles, plus signs, or numbers only
-- ?? **100,000 Movie Capacity** - Professional-grade scalability
-- ?? **CRUD Operations** - Complete Create, Read, Update, Delete functionality
-- ?? **Cross-Platform** - Works on Windows, Linux, and macOS
-- ?? **Dynamic Memory Management** - Heap allocation for large datasets
-- ?? **User-Friendly Interface** - Interactive menu-driven system
+- 🏗️ **Professional OOP Implementation** - Classes, objects, encapsulation, abstraction, RAII
+- 🎬 **50 Diverse Movies** - From 7 languages spanning 1948-2024
+- 🔍 **Advanced Search & Filter** - Top-rated, by language, latest releases, name search
+- 💾 **File Persistence** - Automatic save/load with binary file format
+- ⭐ **5 Display Styles** - Stars, blocks, circles, plus signs, or numbers only
+- 📊 **100,000 Movie Capacity** - Professional-grade scalability
+- ✅ **CRUD Operations** - Complete Create, Read, Update, Delete functionality
+- 🖥️ **Cross-Platform** - Works on Windows, Linux, and macOS
+- 🧠 **Dynamic Memory Management** - Heap allocation for large datasets
+- 🎯 **User-Friendly Interface** - Interactive menu-driven system
 
-## ?? Quick Start
+## 🚀 Quick Start
 
 ### Compilation
 
@@ -52,52 +52,52 @@ cmake --build .
 ./MovieDatabase
 ```
 
-## ?? Project Structure
+## 📁 Project Structure
 
 ```
 Mastering-OOP-Movie-Database-CPP/
-?
-??? ?? Source Code
-?   ??? main.cpp                    # Main program with menu system
-?   ??? Movie.cpp                   # Movie class implementation
-?   ??? Movie.h                     # Movie class declaration
-?   ??? MovieDatabase.cpp           # Database implementation
-?   ??? MovieDatabase.h             # Database class declaration
-?   ??? MovieDisplay.h              # Display utilities
-?
-??? ?? Build Configuration
-?   ??? CMakeLists.txt              # CMake build configuration
-?   ??? Makefile                    # Make build file
-?   ??? compile_and_run.bat         # Windows quick build script
-?
-??? ?? Data
-?   ??? movies.dat                  # Binary data file (auto-generated)
-?
-??? ?? Project Files
-    ??? README.md                   # This file
-    ??? LICENSE                     # MIT License
-    ??? .gitignore                  # Git ignore rules
+│
+├── 📝 Source Code
+│   ├── main.cpp                    # Main program with menu system
+│   ├── Movie.cpp                   # Movie class implementation
+│   ├── Movie.h                     # Movie class declaration
+│   ├── MovieDatabase.cpp           # Database implementation
+│   ├── MovieDatabase.h             # Database class declaration
+│   └── MovieDisplay.h              # Display utilities
+│
+├── ⚙️ Build Configuration
+│   ├── CMakeLists.txt              # CMake build configuration
+│   ├── Makefile                    # Make build file
+│   └── compile_and_run.bat         # Windows quick build script
+│
+├── 💾 Data
+│   └── movies.dat                  # Binary data file (auto-generated)
+│
+└── 📄 Project Files
+    ├── README.md                   # This file
+    ├── LICENSE                     # MIT License
+    └── .gitignore                  # Git ignore rules
 ```
 
-## ?? Features
+## ⚡ Features
 
 ### Core Functionality
-- ? **View All Movies** - Display complete database with formatted tables
-- ? **Top-Rated Movies** - Find highest-rated films
-- ? **Filter by Language** - Browse movies in 7 languages
-- ? **Latest Movies** - See most recent releases
-- ? **Search by Name** - Case-insensitive partial matching
-- ? **Add Movies** - Expand your collection (up to 100,000!)
-- ? **Remove Movies** - Delete unwanted entries
-- ? **Update Movies** - Modify existing information
-- ? **Database Statistics** - View capacity and usage
-- ? **Display Styles** - Choose your preferred rating visualization
+- 👁️ **View All Movies** - Display complete database with formatted tables
+- 🏆 **Top-Rated Movies** - Find highest-rated films
+- 🌐 **Filter by Language** - Browse movies in 7 languages
+- 🆕 **Latest Movies** - See most recent releases
+- 🔎 **Search by Name** - Case-insensitive partial matching
+- ➕ **Add Movies** - Expand your collection (up to 100,000!)
+- 🗑️ **Remove Movies** - Delete unwanted entries
+- ✏️ **Update Movies** - Modify existing information
+- 📈 **Database Statistics** - View capacity and usage
+- 🎨 **Display Styles** - Choose your preferred rating visualization
 
 ### Data Persistence
-- ?? **Automatic Save** - Changes saved after add/remove/update
-- ?? **Binary Format** - Efficient file storage
-- ?? **Auto-Load** - Restores data on startup
-- ??? **Error Handling** - Corruption detection and recovery
+- 💿 **Automatic Save** - Changes saved after add/remove/update
+- 🔐 **Binary Format** - Efficient file storage
+- 📥 **Auto-Load** - Restores data on startup
+- 🛡️ **Error Handling** - Corruption detection and recovery
 
 ### Display Styles
 1. **Stars/Bars** - `[*********-] 9.3/10`
@@ -113,7 +113,7 @@ The system includes **50 critically acclaimed films** from around the world:
 | Language | Count | Notable Films |
 |----------|-------|---------------|
 | English | 15 | The Shawshank Redemption (9.3), The Dark Knight (9.0), Inception (8.8) |
-| French | 8 | Intouchables (8.5), Am�lie (8.3), La Haine (8.1) |
+| French | 8 | Intouchables (8.5), Am�lie (8.3), La Haine (8.1) |
 | Korean | 6 | Parasite (8.5), Oldboy (8.4), Memories of Murder (8.1) |
 | Japanese | 7 | Spirited Away (8.6), Seven Samurai (8.6), Your Name (8.4) |
 | Italian | 5 | Life Is Beautiful (8.6), Cinema Paradiso (8.5), Bicycle Thieves (8.3) |
