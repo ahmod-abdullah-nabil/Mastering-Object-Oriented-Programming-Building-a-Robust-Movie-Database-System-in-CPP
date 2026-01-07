@@ -7,13 +7,16 @@
 // This class manages a collection of movies
 class MovieDatabase {
 private:
-    static const int MAX_MOVIES = 100; // Increased capacity for user additions
-    Movie movies[MAX_MOVIES]; // Array to store all movies
+    static const int MAX_MOVIES = 100000; // Maximum capacity: 100,000 movies!
+    Movie* movies; // Dynamic array to store all movies (heap allocation)
     int movieCount; // Keep track of how many movies we have
 
 public:
     // Constructor
     MovieDatabase();
+    
+    // Destructor to free memory
+    ~MovieDatabase();
     
     // Add a movie to the database
     bool addMovie(const Movie& movie);
@@ -53,6 +56,9 @@ public:
     
     // Check if database is full
     bool isFull() const;
+    
+    // Get maximum capacity
+    int getMaxCapacity() const;
     
     // File persistence methods
     bool saveToFile(const std::string& filename = "movies.dat") const;

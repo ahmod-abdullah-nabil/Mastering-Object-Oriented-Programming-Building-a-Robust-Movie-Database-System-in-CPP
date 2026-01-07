@@ -5,8 +5,15 @@
 #include <algorithm>
 #include <fstream>
 
-// Initialize empty database
-MovieDatabase::MovieDatabase() : movieCount(0) {}
+// Initialize empty database with dynamic memory allocation
+MovieDatabase::MovieDatabase() : movieCount(0) {
+    movies = new Movie[MAX_MOVIES]; // Allocate memory on heap for 100,000 movies
+}
+
+// Destructor to free allocated memory
+MovieDatabase::~MovieDatabase() {
+    delete[] movies; // Free the dynamically allocated memory
+}
 
 // Try to add a movie if there's space
 bool MovieDatabase::addMovie(const Movie& movie) {
@@ -283,6 +290,11 @@ int MovieDatabase::getNextId() const {
 // Check if database is full
 bool MovieDatabase::isFull() const {
     return movieCount >= MAX_MOVIES;
+}
+
+// Get maximum capacity
+int MovieDatabase::getMaxCapacity() const {
+    return MAX_MOVIES;
 }
 
 // Load 50 movies into the database (mix of different languages and years)

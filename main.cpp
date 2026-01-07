@@ -283,23 +283,22 @@ void displayStatistics(MovieDatabase& database) {
     cout << string(100, '=') << endl;
     
     int total = database.getMovieCount();
-    int capacity = 100;
+    int capacity = database.getMaxCapacity(); // Get actual capacity (100,000)
     int available = capacity - total;
     float percentFull = (total * 100.0) / capacity;
     
     cout << "\n  Total Movies........: " << total << endl;
-    cout << "  Database Capacity...: " << capacity << endl;
-    cout << "  Available Slots.....: " << available << endl;
-    cout << "  Usage Percentage....: " << percentFull << "%" << endl;
+    cout << "  Database Capacity...: " << capacity << " movies" << endl;
+    cout << "  Available Slots.....: " << available << " movies" << endl;
+    cout << "  Usage Percentage....: " << fixed << setprecision(2) << percentFull << "%" << endl;
     cout << "  Database Status.....: " << (database.isFull() ? "FULL" : "Available") << endl;
     
     // Draw progress bar
     cout << "\n  Capacity Usage: [";
-
     int bars = (int)(percentFull / 5);
     for (int i = 0; i < bars; i++) cout << "#";
     for (int i = bars; i < 20; i++) cout << "-";
-    cout << "] " << percentFull << "%" << endl;
+    cout << "] " << fixed << setprecision(2) << percentFull << "%" << endl;
     
     cout << "\n" << string(100, '=') << endl;
 }
@@ -330,6 +329,7 @@ int main() {
     cout << string(100, '=') << endl;
     
     cout << "\nWelcome! The database has been initialized with " << database.getMovieCount() << " movies." << endl;
+    cout << "Database Capacity: " << database.getMaxCapacity() << " movies (Plenty of room to grow!)" << endl;
     cout << "Tip: Try option 10 to change the rating display style!" << endl;
     
     // Main program loop
