@@ -3,23 +3,14 @@
 
 using namespace std;
 
-/**
- * @brief Main function demonstrating the Movie Database System
- * 
- * This program showcases Object-Oriented Programming principles:
- * - Encapsulation: Data hiding through private members and public methods
- * - Abstraction: Complex operations hidden behind simple interfaces
- * - Composition: MovieDatabase contains Movie objects
- * - Information Hiding: Implementation details hidden from users
- */
 int main() {
-    // Create MovieDatabase object
+    // Create a database to store movies
     MovieDatabase database;
     
-    // Initialize with 20 carefully selected movies
+    // Load the 20 movies
     database.initializeSampleData();
     
-    // Display program header
+    // Program header
     cout << "\n";
     cout << string(100, '*') << endl;
     cout << "**                                                                                                  **" << endl;
@@ -32,31 +23,28 @@ int main() {
     
     cout << "\nTotal Movies in Database: " << database.getMovieCount() << endl;
     
-    // Requirement 1: Display all movies
+    // Show all movies
     database.displayAllMovies();
     
-    // Wait for user input
     cout << "\nPress Enter to view TOP-RATED movies...";
     cin.get();
     
-    // Requirement 2: Display top-rated movie(s)
+    // Show top-rated movies
     database.displayTopRatedMovies();
     
-    // Wait for user input
     cout << "\nPress Enter to view FRENCH movies...";
     cin.get();
     
-    // Requirement 3: Display movies in French
+    // Show French movies
     database.displayMoviesByLanguage("French");
     
-    // Wait for user input
     cout << "\nPress Enter to view LATEST movies...";
     cin.get();
     
-    // Requirement 4: Display latest movie(s)
+    // Show latest movies
     database.displayLatestMovies();
     
-    // Program summary
+    // Summary of OOP concepts used
     cout << "\n" << string(100, '*') << endl;
     cout << "**                              OOP CONCEPTS DEMONSTRATED                                           **" << endl;
     cout << string(100, '*') << endl;

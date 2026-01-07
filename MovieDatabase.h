@@ -4,42 +4,36 @@
 #include "Movie.h"
 #include <vector>
 
-/**
- * @class MovieDatabase
- * @brief Manages a collection of movies and provides search/filter operations
- * 
- * This class demonstrates composition and encapsulation by managing
- * an array of Movie objects and providing various query operations.
- */
+// This class manages a collection of movies
 class MovieDatabase {
 private:
     static const int MAX_MOVIES = 20;
-    Movie movies[MAX_MOVIES];
-    int movieCount;
+    Movie movies[MAX_MOVIES]; // Array to store all movies
+    int movieCount; // Keep track of how many movies we have
 
 public:
     // Constructor
     MovieDatabase();
     
-    // Add movie to database
+    // Add a movie to the database
     bool addMovie(const Movie& movie);
     
-    // Display all movies
+    // Show all movies in the database
     void displayAllMovies() const;
     
-    // Find and display top-rated movie(s)
+    // Find and show the highest rated movies
     void displayTopRatedMovies() const;
     
-    // Find and display movies by language
+    // Show movies in a specific language
     void displayMoviesByLanguage(const std::string& language) const;
     
-    // Find and display the latest movie(s)
+    // Show the most recent movies
     void displayLatestMovies() const;
     
     // Get total number of movies
     int getMovieCount() const;
     
-    // Initialize database with sample data
+    // Load the 20 sample movies into database
     void initializeSampleData();
 };
 

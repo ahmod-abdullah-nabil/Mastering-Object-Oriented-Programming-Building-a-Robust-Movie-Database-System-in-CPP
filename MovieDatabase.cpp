@@ -3,10 +3,10 @@
 #include <iomanip>
 #include <string>
 
-// Constructor
+// Initialize empty database
 MovieDatabase::MovieDatabase() : movieCount(0) {}
 
-// Add a movie to the database
+// Try to add a movie if there's space
 bool MovieDatabase::addMovie(const Movie& movie) {
     if (movieCount < MAX_MOVIES) {
         movies[movieCount] = movie;
@@ -16,7 +16,7 @@ bool MovieDatabase::addMovie(const Movie& movie) {
     return false;
 }
 
-// Display all movies with formatted header
+// Display all movies with a nice table format
 void MovieDatabase::displayAllMovies() const {
     std::cout << "\n" << std::string(100, '=') << std::endl;
     std::cout << "                           COMPLETE MOVIE DATABASE" << std::endl;
@@ -34,9 +34,9 @@ void MovieDatabase::displayAllMovies() const {
     std::cout << std::string(100, '=') << std::endl;
 }
 
-// Find and display top-rated movies
+// Find the highest rating and display all movies with that rating
 void MovieDatabase::displayTopRatedMovies() const {
-    // Find maximum rating
+    // First loop: find the maximum rating
     int maxRating = 0;
     for (int i = 0; i < movieCount; i++) {
         if (movies[i].getRating() > maxRating) {
@@ -54,7 +54,7 @@ void MovieDatabase::displayTopRatedMovies() const {
               << "Rating" << std::endl;
     std::cout << std::string(100, '-') << std::endl;
     
-    // Display all movies with maximum rating
+    // Second loop: display all movies that have the max rating
     int count = 0;
     for (int i = 0; i < movieCount; i++) {
         if (movies[i].getRating() == maxRating) {
@@ -68,7 +68,7 @@ void MovieDatabase::displayTopRatedMovies() const {
     std::cout << std::string(100, '=') << std::endl;
 }
 
-// Find and display movies in a specific language
+// Filter and display movies by language
 void MovieDatabase::displayMoviesByLanguage(const std::string& language) const {
     std::cout << "\n" << std::string(100, '=') << std::endl;
     std::cout << "                           MOVIES IN " << language << std::endl;
@@ -97,7 +97,7 @@ void MovieDatabase::displayMoviesByLanguage(const std::string& language) const {
     std::cout << std::string(100, '=') << std::endl;
 }
 
-// Find and display the latest movie(s)
+// Find and display the latest movies by year
 void MovieDatabase::displayLatestMovies() const {
     // Find the most recent year
     int latestYear = 0;
@@ -117,7 +117,7 @@ void MovieDatabase::displayLatestMovies() const {
               << "Rating" << std::endl;
     std::cout << std::string(100, '-') << std::endl;
     
-    // Display all movies from the latest year
+    // Display all movies from that year
     int count = 0;
     for (int i = 0; i < movieCount; i++) {
         if (movies[i].getYear() == latestYear) {
@@ -131,14 +131,13 @@ void MovieDatabase::displayLatestMovies() const {
     std::cout << std::string(100, '=') << std::endl;
 }
 
-// Get the total movie count
+// Return how many movies are in the database
 int MovieDatabase::getMovieCount() const {
     return movieCount;
 }
 
-// Initialize database with 20 critically acclaimed and diverse movies
+// Load 20 movies into the database (mix of different languages and years)
 void MovieDatabase::initializeSampleData() {
-    // Mix of classic and modern cinema from different languages and genres
     addMovie(Movie("The Shawshank Redemption", 1, 1994, "English", 5));
     addMovie(Movie("The Godfather", 2, 1972, "English", 5));
     addMovie(Movie("Amélie (Le Fabuleux Destin d'Amélie Poulain)", 3, 2001, "French", 5));
