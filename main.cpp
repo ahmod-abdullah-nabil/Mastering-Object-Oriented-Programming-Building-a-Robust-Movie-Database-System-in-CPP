@@ -5,9 +5,6 @@
 
 using namespace std;
 
-// Current rating display style (can be changed by user)
-int currentRatingStyle = 0; // 0=bars, 1=blocks, 2=numbers, 3=dots, 4=plus
-
 // Function to clear input buffer
 void clearInput() {
     cin.clear();
@@ -47,7 +44,8 @@ void changeDisplayStyle() {
     cout << "  5. Numbers Only    9.5/10.0" << endl;
     cout << "\nCurrent style: ";
     
-    switch(currentRatingStyle) {
+    int currentStyle = Movie::getDisplayStyle();
+    switch(currentStyle) {
         case 0: cout << "Stars/Bars"; break;
         case 1: cout << "Blocks"; break;
         case 2: cout << "Circles"; break;
@@ -60,8 +58,9 @@ void changeDisplayStyle() {
     cin >> choice;
     
     if (choice >= 1 && choice <= 5) {
-        currentRatingStyle = choice - 1;
-        cout << "\n? Display style updated!" << endl;
+        Movie::setDisplayStyle(choice - 1);
+        cout << "\n? Display style updated successfully!" << endl;
+        cout << "All movie ratings will now display in the new style." << endl;
     } else {
         cout << "\n? Invalid choice!" << endl;
     }
@@ -112,14 +111,15 @@ void addNewMovie(MovieDatabase& database) {
         // Show rating in current style
         cout << "[";
         int stars = (int)rating;
-        switch(currentRatingStyle) {
+        int currentStyle = Movie::getDisplayStyle();
+        switch(currentStyle) {
             case 0: for (int i = 0; i < stars; i++) cout << "*"; for (int i = stars; i < 10; i++) cout << "-"; break;
             case 1: for (int i = 0; i < stars; i++) cout << "#"; for (int i = stars; i < 10; i++) cout << "."; break;
             case 2: for (int i = 0; i < stars; i++) cout << "o"; for (int i = stars; i < 10; i++) cout << "."; break;
             case 3: for (int i = 0; i < stars; i++) cout << "+"; for (int i = stars; i < 10; i++) cout << " "; break;
             case 4: cout << fixed << setprecision(1) << rating << "/10.0"; break;
         }
-        if (currentRatingStyle != 4) {
+        if (currentStyle != 4) {
             cout << "] " << fixed << setprecision(1) << rating << "/10";
         }
         cout << endl;

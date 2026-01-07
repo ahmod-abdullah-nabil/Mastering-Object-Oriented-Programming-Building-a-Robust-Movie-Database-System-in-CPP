@@ -13,6 +13,9 @@ private:
     std::string language;
     double rating; // Rating from 1.0 to 10.0
     
+    // Static variable to hold the current display style
+    static int displayStyle; // 0=stars, 1=blocks, 2=circles, 3=plus, 4=numbers
+    
 public:
     // Constructors
     Movie();
@@ -31,6 +34,10 @@ public:
     void setYear(int year);
     void setLanguage(const std::string& language);
     void setRating(double rating);
+    
+    // Static method to set display style for all movies
+    static void setDisplayStyle(int style);
+    static int getDisplayStyle();
     
     // Display movie information
     void displayInfo() const;

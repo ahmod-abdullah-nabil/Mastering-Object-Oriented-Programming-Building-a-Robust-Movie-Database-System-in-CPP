@@ -2,6 +2,9 @@
 #include <iostream>
 #include <iomanip>
 
+// Initialize static member
+int Movie::displayStyle = 0; // Default to stars/bars
+
 // Default constructor initializes everything to default values
 Movie::Movie() : name(""), id(0), year(0), language(""), rating(0.0) {}
 
@@ -73,6 +76,18 @@ void Movie::setRating(double rating) {
     }
 }
 
+// Static method to set display style
+void Movie::setDisplayStyle(int style) {
+    if (style >= 0 && style <= 4) {
+        displayStyle = style;
+    }
+}
+
+// Static method to get display style
+int Movie::getDisplayStyle() {
+    return displayStyle;
+}
+
 // Print movie information in a nice format
 void Movie::displayInfo() const {
     std::cout << std::left << std::setw(5) << id 
@@ -80,16 +95,47 @@ void Movie::displayInfo() const {
               << std::setw(6) << year 
               << std::setw(15) << language;
     
-    // Show rating as visual bar (scale to 10)
+    // Show rating based on current display style
     std::cout << "[";
     int stars = (int)(rating); // Full stars
-    for (int i = 0; i < stars; i++) {
-        std::cout << "*";
+    
+    switch(displayStyle) {
+        case 0: // Stars/Bars [**********] [*******---]
+            for (int i = 0; i < stars; i++) std::cout << "*";
+            for (int i = stars; i < 10; i++) std::cout << "-";
+            std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10";
+            break;
+            
+        case 1: // Blocks [##########] [#######...]
+            for (int i = 0; i < stars; i++) std::cout << "#";
+            for (int i = stars; i < 10; i++) std::cout << ".";
+            std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10";
+            break;
+            
+        case 2: // Circles [oooooooooo] [ooooooo...]
+            for (int i = 0; i < stars; i++) std::cout << "o";
+            for (int i = stars; i < 10; i++) std::cout << ".";
+            std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10";
+            break;
+            
+        case 3: // Plus Signs [++++++++++] [+++++++   ]
+            for (int i = 0; i < stars; i++) std::cout << "+";
+            for (int i = stars; i < 10; i++) std::cout << " ";
+            std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10";
+            break;
+            
+        case 4: // Numbers Only
+            std::cout << std::fixed << std::setprecision(1) << rating << "/10.0]";
+            break;
+            
+        default: // Fallback to stars
+            for (int i = 0; i < stars; i++) std::cout << "*";
+            for (int i = stars; i < 10; i++) std::cout << "-";
+            std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10";
+            break;
     }
-    for (int i = stars; i < 10; i++) {
-        std::cout << "-";
-    }
-    std::cout << "] " << std::fixed << std::setprecision(1) << rating << "/10" << std::endl;
+    
+    std::cout << std::endl;
 }
 
 // Helper function to check if this movie is in a particular language (case-insensitive)
