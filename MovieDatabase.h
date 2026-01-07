@@ -7,7 +7,7 @@
 // This class manages a collection of movies
 class MovieDatabase {
 private:
-    static const int MAX_MOVIES = 20;
+    static const int MAX_MOVIES = 100; // Increased capacity for user additions
     Movie movies[MAX_MOVIES]; // Array to store all movies
     int movieCount; // Keep track of how many movies we have
 
@@ -18,11 +18,23 @@ public:
     // Add a movie to the database
     bool addMovie(const Movie& movie);
     
+    // Remove a movie by ID
+    bool removeMovie(int id);
+    
+    // Update movie information
+    bool updateMovie(int id, const std::string& name, int year, const std::string& language, double rating);
+    
+    // Find a movie by ID
+    Movie* findMovieById(int id);
+    
     // Show all movies in the database
     void displayAllMovies() const;
     
     // Find and show the highest rated movies
     void displayTopRatedMovies() const;
+    
+    // Add a method to get all unique languages
+    void displayAvailableLanguages() const;
     
     // Show movies in a specific language
     void displayMoviesByLanguage(const std::string& language) const;
@@ -30,8 +42,17 @@ public:
     // Show the most recent movies
     void displayLatestMovies() const;
     
+    // Search movie by name
+    void searchMovieByName(const std::string& searchTerm) const;
+    
     // Get total number of movies
     int getMovieCount() const;
+    
+    // Get next available ID
+    int getNextId() const;
+    
+    // Check if database is full
+    bool isFull() const;
     
     // Load the 20 sample movies into database
     void initializeSampleData();
