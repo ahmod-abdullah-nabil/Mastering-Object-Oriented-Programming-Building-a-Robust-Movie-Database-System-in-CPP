@@ -157,40 +157,88 @@ void MovieDatabase::displayAvailableLanguages() const
 {
     std::cout << "\nAvailable languages in database:" << std::endl;
 
-    // Count movies by language
-    int englishCount = 0, frenchCount = 0, koreanCount = 0, japaneseCount = 0;
-    int italianCount = 0, spanishCount = 0, portugueseCount = 0;
+    if (movieCount == 0)
+    {
+        std::cout << "  No movies in database." << std::endl;
+        return;
+    }
 
+    // Use a simple array to store unique languages and their counts
+    // This avoids using std::map or std::unordered_map for C++11 compatibility
+    const int MAX_LANGUAGES = 50;
+    std::string languages[MAX_LANGUAGES];
+    int counts[MAX_LANGUAGES];
+    int uniqueLanguageCount = 0;
+
+    // Collect all unique languages and count them
     for (int i = 0; i < movieCount; i++)
     {
         std::string lang = movies[i].getLanguage();
+        
+        // Convert to lowercase for consistent comparison
         std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
 
-        if (lang == "english")
-            englishCount++;
-        else if (lang == "french")
-            frenchCount++;
-        else if (lang == "korean")
-            koreanCount++;
-        else if (lang == "japanese")
-            japaneseCount++;
-        else if (lang == "italian")
-            italianCount++;
-        else if (lang == "spanish")
-            spanishCount++;
-        else if (lang == "portuguese")
-            portugueseCount++;
+        // Check if this language already exists in our list
+        bool found = false;
+        for (int j = 0; j < uniqueLanguageCount; j++)
+        {
+            if (languages[j] == lang)
+            {
+                counts[j]++;
+                found = true;
+                break;
+            }
+        }
+
+        // If not found, add it as a new language
+        if (!found && uniqueLanguageCount < MAX_LANGUAGES)
+        {
+            languages[uniqueLanguageCount] = lang;
+            counts[uniqueLanguageCount] = 1;
+            uniqueLanguageCount++;
+        }
     }
 
-    std::cout << "  1. English     - " << std::setw(2) << englishCount << " movies" << std::endl;
-    std::cout << "  2. French      - " << std::setw(2) << frenchCount << " movies" << std::endl;
-    std::cout << "  3. Korean      - " << std::setw(2) << koreanCount << " movies" << std::endl;
-    std::cout << "  4. Japanese    - " << std::setw(2) << japaneseCount << " movies" << std::endl;
-    std::cout << "  5. Italian     - " << std::setw(2) << italianCount << " movies" << std::endl;
-    std::cout << "  6. Spanish     - " << std::setw(2) << spanishCount << " movies" << std::endl;
-    std::cout << "  7. Portuguese  - " << std::setw(2) << portugueseCount << " movies" << std::endl;
+    // Sort languages alphabetically (simple bubble sort)
+    for (int i = 0; i < uniqueLanguageCount - 1; i++)
+    {
+        for (int j = 0; j < uniqueLanguageCount - i - 1; j++)
+        {
+            if (languages[j] > languages[j + 1])
+            {
+                // Swap languages
+                std::string tempLang = languages[j];
+                languages[j] = languages[j + 1];
+                languages[j + 1] = tempLang;
 
-    std::cout << "\n  Total: " << movieCount << " movies across 7 languages" << std::endl;
+                // Swap counts
+                int tempCount = counts[j];
+                counts[j] = counts[j + 1];
+                counts[j + 1] = tempCount;
+            }
+        }
+    }
+
+    // Display all unique languages with their counts
+    for (int i = 0; i < uniqueLanguageCount; i++)
+    {
+        // Capitalize first letter for display
+        std::string displayLang = languages[i];
+        if (!displayLang.empty())
+        {
+            displayLang[0] = toupper(displayLang[0]);
+        }
+        
+        std::cout << "  " << std::setw(2) << (i + 1) << ". " 
+                  << std::left << std::setw(15) << displayLang 
+                  << " - " << std::setw(3) << counts[i] 
+                  << " movie" << (counts[i] != 1 ? "s" : "") << std::endl;
+    }
+
+    std::cout << "\n  Total: " << movieCount << " movie" 
+              << (movieCount != 1 ? "s" : "") 
+              << " across " << uniqueLanguageCount << " language" 
+              << (uniqueLanguageCount != 1 ? "s" : "") << std::endl;
 }
 
 // Filter and display movies by language (case-insensitive)

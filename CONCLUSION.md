@@ -345,6 +345,103 @@ if (count == 0) {
 
 ---
 
+### Problem 5.3: Hardcoded Language List
+
+**Issue:**
+- `displayAvailableLanguages()` only showed 7 hardcoded languages
+- Newly added movies with different languages not displayed in language list
+- Users couldn't find movies they just added with custom languages
+- Static list didn't reflect actual database contents
+
+**Symptoms:**
+```
+User adds: "New Movie" with language "German"
+User searches by language: "German" - Not shown in available languages list
+User searches: Can't find the movie because language isn't listed
+```
+
+**Initial Implementation:**
+```cpp
+// Hardcoded language counting - PROBLEMATIC
+int englishCount = 0, frenchCount = 0, koreanCount = 0, japaneseCount = 0;
+int italianCount = 0, spanishCount = 0, portugueseCount = 0;
+
+// Only counted specific languages, ignored others
+if (lang == "english") englishCount++;
+else if (lang == "french") frenchCount++;
+// ... only 7 languages hardcoded
+```
+
+**Solution Implemented:**
+```cpp
+void MovieDatabase::displayAvailableLanguages() const {
+    // Dynamic language discovery
+    const int MAX_LANGUAGES = 50;
+    std::string languages[MAX_LANGUAGES];
+    int counts[MAX_LANGUAGES];
+    int uniqueLanguageCount = 0;
+
+    // Collect ALL unique languages from database
+    for (int i = 0; i < movieCount; i++) {
+        std::string lang = movies[i].getLanguage();
+        std::transform(lang.begin(), lang.end(), lang.begin(), ::tolower);
+
+        // Check if language already exists
+        bool found = false;
+        for (int j = 0; j < uniqueLanguageCount; j++) {
+            if (languages[j] == lang) {
+                counts[j]++;
+                found = true;
+                break;
+            }
+        }
+
+        // Add new language if not found
+        if (!found && uniqueLanguageCount < MAX_LANGUAGES) {
+            languages[uniqueLanguageCount] = lang;
+            counts[uniqueLanguageCount] = 1;
+            uniqueLanguageCount++;
+        }
+    }
+
+    // Sort alphabetically and display
+    // Bubble sort for simplicity and C++11 compatibility
+    for (int i = 0; i < uniqueLanguageCount - 1; i++) {
+        for (int j = 0; j < uniqueLanguageCount - i - 1; j++) {
+            if (languages[j] > languages[j + 1]) {
+                std::swap(languages[j], languages[j + 1]);
+                std::swap(counts[j], counts[j + 1]);
+            }
+        }
+    }
+
+    // Display all languages found
+    for (int i = 0; i < uniqueLanguageCount; i++) {
+        std::string displayLang = languages[i];
+        if (!displayLang.empty()) displayLang[0] = toupper(displayLang[0]);
+        std::cout << "  " << (i + 1) << ". " << displayLang 
+                  << " - " << counts[i] << " movie(s)" << std::endl;
+    }
+}
+```
+
+**Benefits:**
+- ? Dynamically discovers ALL languages in database
+- ? No hardcoded language restrictions
+- ? Newly added movies with any language immediately visible
+- ? Sorted alphabetically for easy scanning
+- ? Accurate count for each language
+- ? Supports up to 50 different languages
+- ? Reflects actual database state
+
+**Why This Matters:**
+- Users can add movies in ANY language
+- International movie collections properly supported
+- Database grows organically without code changes
+- Better user experience for diverse collections
+
+---
+
 ## 6. User Interface & Experience
 
 ### Problem 6.1: Display Consistency
@@ -788,9 +885,11 @@ The solutions implemented provide a solid foundation for a production-ready movi
 
 **Project Status**: ? Complete with comprehensive problem-solving documentation
 
-**Total Issues Resolved**: 25+ problems across 12 major categories
+**Total Issues Resolved**: 26+ problems across 12 major categories (Updated: Fixed hardcoded language list issue)
 
 **Code Quality**: Production-ready with proper error handling, validation, and documentation
+
+**Latest Fix**: Dynamic language discovery - supports movies in ANY language, not just the original 7 hardcoded ones
 
 ---
 
